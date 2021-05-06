@@ -4,8 +4,6 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
-const nodemailer = require("nodemailer");
-const user = require("../models/user");
 
 // Here we will send a post request to reset our password
 // If a user forgets their password, they can input the email associated with their account and recieve an email allowing them to reset it
@@ -29,7 +27,7 @@ router.post("/", (req, res) => {
           .status(404)
           .send({ error: "A Member with this email address doesn't exist!" });
       } else {
-        // Here we'll create a test nodemailer account just for demonstration purposes
+
         // If this User does exist, set their passwordResetToken to the token we created earlier
         // See ../models/user if you would like to see where we've added this in our userSchema
         user.passwordResetToken = token;
